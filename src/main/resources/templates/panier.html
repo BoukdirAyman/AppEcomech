@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Votre Panier</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <style>
+    /* Ajoutez votre propre style ici */
+    .card {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .total-price {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
+  <a class="navbar-brand mr-5" href="/">Appecomtech</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/Smartphones">Smartphones</a>
+          <a class="dropdown-item" href="/Accessoires">Accessoires</a>
+          <a class="dropdown-item" href="/Tablettes">Tablettes</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marque</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+          <a class="dropdown-item" href="/Apple">Apple</a>
+          <a class="dropdown-item" href="/Samsung">Samsung</a>
+          <a class="dropdown-item" href="/Huawei">Huawei</a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/produits/allproduits">Produits</a></li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="/recherche" method="get">
+      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+    </form>
+    <a class="btn btn-outline-primary ml-2" href="/Connexion">Connexion</a>
+    <a class="nav-link" href="produits/gererproduits">Gerer produit</a>
+    <a class="nav-link" href="/panier">Panier</a>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Panier</h1>
+  <div class="row">
+    <div th:each="panierItem : ${panierItems}" class="col-md-6">
+      <div class="card mb-4 shadow-sm">
+        <img th:src="@{${panierItem.image}}" class="card-img-top" alt="Image produit">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${panierItem.nom}">Nom Produit</h5>
+          <p class="card-text" th:text="${panierItem.description}">Description du produit</p>
+          <p class="card-text"><strong th:text="${panierItem.prix}">Prix</strong> €</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <form th:action="@{/supprimer-du-panier}" method="post">
+                <input type="hidden" name="produitId" th:value="${panierItem.id}">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+              </form>
+            </div>
+            <p class="card-text">Quantité: <span th:text="${panierItem.quantite}">1</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--<div class="container mt-5">-->
+<!--  <h1>Votre Panier</h1>-->
+<!--  <div class="row mt-5">-->
+<!--    <div class="col-md-6" th:each="panierItem : ${panierItems}">-->
+<!--      <div class="card mb-4 shadow-sm">-->
+<!--        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Image produit">-->
+<!--        <div class="card-body">-->
+<!--          <h5 class="card-title" th:text="${panierItem.produit.nom}">Nom Produit</h5>-->
+<!--          <p class="card-text" th:text="${panierItem.produit.description}">Description du produit.</p>-->
+<!--          <p class="card-text"><strong th:text="${panierItem.produit.prix}">Prix</strong> €</p>-->
+<!--          <div class="d-flex justify-content-between align-items-center">-->
+<!--            <div class="btn-group">-->
+<!--              <button type="button" class="btn btn-sm btn-outline-danger">Supprimer</button>-->
+<!--            </div>-->
+<!--            <p class="card-text">Quantité: <span th:text="${panierItem.quantite}">1</span></p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="text-right">
+    <h5>Total: <span th:text="${total}"></span> €</h5>
+  </div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-danger checkout-btn">Passer la commande</button>
+  </div>
+</div>
+
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+    <ul class="social-icons">
+      <li><a href="#" class="fab fa-facebook"></a></li>
+      <li><a href="#" class="fab fa-twitter"></a></li>
+      <li><a href="#" class="fab fa-instagram"></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+    <ul class="social-icons">
+      <li><a href="#" class="fab fa-facebook"></a></li>
+      <li><a href="#" class="fab fa-twitter"></a></li>
+      <li><a href="#" class="fab fa-instagram"></a></li>
+    </ul>
+  </div>
+</footer>
+</html>

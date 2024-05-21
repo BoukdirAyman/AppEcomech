@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails Produit</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <h1>Détails du Produit</h1>
+    <div class="card">
+        <img th:src="${produit.image}" alt="Image produit" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${produit.nom}">Nom Produit</h5>
+            <p class="card-text" th:text="${produit.description}">Description du produit.</p>
+            <p class="card-text"><strong th:text="${produit.prix}">Prix</strong> €</p>
+            <p class="card-text">Stock: <span th:text="${produit.quantiteEnStock}">0</span></p>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

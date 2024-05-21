@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscription</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Formulaire d'inscription</h1>
+    <form th:action="@{/inscription}" th:object="${utilisateur}" method="post">
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" th:field="*{nom}" placeholder="Entrez votre nom">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Entrez votre adresse email">
+        </div>
+        <div class="form-group">
+            <label for="motDePasse">Mot de passe:</label>
+            <input type="password" class="form-control" id="motDePasse" th:field="*{motDePasse}" placeholder="Entrez votre mot de passe">
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" class="form-control" id="adresse" th:field="*{adresse}" placeholder="Entrez votre adresse">
+        </div>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Liens vers les fichiers CSS -->
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<!-- Barre de navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mr-5" href="/">Appecomtech</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Liens de navigation -->
+        <ul class="navbar-nav mr-auto">
+            <!-- Accueil -->
+            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+
+            <!-- Produits -->
+            <li class="nav-item"><a class="nav-link" href="/produits/allproduits">Produits</a></li>
+        </ul>
+        <!-- Formulaire de recherche -->
+        <form class="form-inline my-2 my-lg-0" action="/recherche" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+        </form>
+        <!-- Liens pour Connexion, Admin, Panier -->
+        <a class="btn btn-outline-primary ml-2" href="/Connexion">Connexion</a>
+
+    </div>
+</nav>
+<!-- Contenu principal -->
+<div class="container">
+    <h1 class="mt-5">Liste des Produits</h1>
+    <!-- Tableau pour afficher les produits -->
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Quantité en Stock</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Boucle pour afficher chaque produit -->
+        <tr th:each="produit : ${listeProduits}">
+            <td th:text="${produit.nom}"></td>
+            <td th:text="${produit.description}"></td>
+            <td th:text="${produit.prix}"></td>
+            <td th:text="${produit.quantiteEnStock}"></td>
+            <td>
+                <!-- Liens pour afficher les détails, modifier ou supprimer le produit -->
+                <a th:href="@{/produits/details/{id}(id=${produit.id})}" class="btn btn-info btn-sm">Détails</a>
+                <a th:href="@{/produits/modifier/{id}(id=${produit.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                <a th:href="@{/produits/supprimer/{id}(id=${produit.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Lien pour ajouter un nouveau produit -->
+    <a href="/produits/ajouter" class="btn btn-primary">Ajouter Produit</a>
+</div>
+<!-- Pied de page -->
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <!-- Liens vers les réseaux sociaux -->
+        <ul class="social-icons">
+            <li><a href="#" class="fab fa-facebook"></a></li>
+            <li><a href="#" class="fab fa-twitter"></a></li>
+            <li><a href="#" class="fab fa-instagram"></a></li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>
