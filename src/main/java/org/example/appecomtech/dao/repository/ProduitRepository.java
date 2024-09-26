@@ -16,5 +16,6 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
 
     List<Produit> findAllByOrderByPrixDesc();
 
+    List<Produit> findByNomContainingIgnoreCase(String termeRecherche);
 
 }

@@ -4,8 +4,34 @@
     <title>Liste des Produits</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <a class="btn " href="/">
+            <img class="logo" src="/image/logo.png" alt="LOGO">
+        </a></a>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarContact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contactez-nous
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarContact">
+                    <a class="dropdown-item" href="tel:0617597712">0617597712</a>
+                    <a class="dropdown-item" href="mailto:contact@example.com">aymanboukdirpro@gmail.com</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="btn " href="/Connexion">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login">
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
     <a class="navbar-brand mr-5" href="/">Appecomtech</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -28,8 +54,6 @@
 </nav>
 
 <div class="container mt-5">
-
-    <!-- Options de tri -->
     <div class="dropdown mb-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -40,32 +64,28 @@
             <a class="dropdown-item" href="#" th:href="@{/produits/allproduits(sort='DESC')}">Prix décroissant</a>
         </div>
     </div>
-
-
-    <!-- Liste des produits -->
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Produits Apple</h1>
+        <h1 class="text-center mb-4">Produits</h1>
         <div class="row">
-            <div th:each="produit : ${produits}" class="col-md-4 mb-4">
+            <div th:each="produit : ${produits}" class="col-md-4 mb-4" >
                 <div class="card">
-                    <img th:src="@{${produit.image}}" class="card-img-top" alt="Image produit">
+                    <img style="border-radius: 15px " th:src="@{${produit.image}}" class="card-img-top" alt="Image produit">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${produit.nom}">Nom du produit</h5>
                         <p class="card-text" th:text="${produit.description}">Description du produit</p>
                         <p class="card-text" th:text="'$' + ${produit.prix}">Prix du produit</p>
-                        <form th:action="@{/ajouter-au-panier}" method="post">
+                        <form th:action="@{/panier/ajouter}" method="post">
                             <input type="hidden" name="produitId" th:value="${produit.id}">
                             <button type="submit" class="btn btn-primary" data-id="[[${produit.id}]]" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
                         </form>
+                        <small class="text-muted">Stock: <span th:text="${produit.quantiteEnStock}">0</span></small>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        <!-- Fin de l'itération -->
+    </div>
     </div>
 
-</div>
 
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
@@ -82,4 +102,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
 </html>

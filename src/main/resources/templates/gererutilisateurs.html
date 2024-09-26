@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Utilisateurs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+
+
+    <style>
+        /* Style pour le footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Style pour les liens dans le footer */
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <a class="btn" href="/">
+            <img class="logo" src="/image/logo.png" alt="LOGO">
+        </a>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn " href="/profiles">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
+    <a class="navbar-brand mr-5" href="/">Appecomtech</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+        </ul>
+        <a class="nav-link" href="/utilisateurs/list">Gérer Utilisateurs</a>
+        <a class="nav-link" href="/produits/gererproduits">Gérer Produits</a>
+        <a class="nav-link" href="/admin/commande-admin">Gérer Commande</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="mt-5">Liste des Utilisateurs</h1>
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="utilisateur : ${listeUtilisateurs}">
+            <td th:text="${utilisateur.nom}"></td>
+            <td th:text="${utilisateur.email}"></td>
+            <td th:text="${utilisateur.role}"></td>
+            <td>
+                <a th:href="@{/utilisateurs/details/{id}(id=${utilisateur.id})}" class="btn btn-info btn-sm">Détails</a>
+                <a th:href="@{/utilisateurs/modifier/{id}(id=${utilisateur.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                <a th:href="@{/utilisateurs/supprimer/{id}(id=${utilisateur.id})}" class="btn btn-danger btn-sm"  href="/supprimer/{id}" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/utilisateurs/ajouter" class="btn btn-primary">Ajouter Utilisateur</a>
+</div>
+</body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
+</html>

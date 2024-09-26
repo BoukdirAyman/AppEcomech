@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails Utilisateur</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Détails Utilisateur</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Nom:</strong> <span th:text="${utilisateur.nom}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${utilisateur.email}"></span></p>
+            <p><strong>Role:</strong> <span th:text="${utilisateur.role}"></span></p>
+            <a href="/utilisateurs/list" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+    </div>
+</div>
+</body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
+</html>

@@ -5,12 +5,18 @@ import org.example.appecomtech.dao.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UtilisateurService {
+
+    private final UtilisateurRepository utilisateurRepository;
+
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
+        this.utilisateurRepository = utilisateurRepository;
+    }
 
     public void save(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
@@ -24,21 +30,30 @@ public class UtilisateurService {
         return utilisateurRepository.findByNom(nom);
     }
 
-
-    public boolean authenticate(String email, String password) {
-        return utilisateurRepository.findByEmailAndPassword(email, password).isPresent();
+    public boolean authenticate(String email, String motDePasse) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByEmailAndMotDePasse(email, motDePasse);
+        return utilisateur.isPresent();
     }
 
     public boolean checkLogin(String username, String password) {
-        Utilisateur existingCreator = utilisateurRepository.findByNom(username);
+        Utilisateur existingUser = utilisateurRepository.findByNom(username);
+        if (existingUser != null && existingUser.getMotDePasse().equals(password)) {
+            return true;
+        } else {
+            System.out.println("Password not valid or user not found");
+            return false;
+        }
+    }
 
-            if (existingCreator.getMotDePasse().equals(password)) {
+    public List<Utilisateur> findAll() {
+        return utilisateurRepository.findAll();
+    }
 
-                return true;
-            } else {
-                System.out.println("Password not valid");
-                return false;
-            }
+    public Optional<Utilisateur> findById(Long id) {
+        return utilisateurRepository.findById(id);
+    }
 
+    public void deleteById(Long id) {
+        utilisateurRepository.deleteById(id);
     }
 }

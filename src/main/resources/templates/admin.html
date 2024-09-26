@@ -2,11 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
     <title>Admin Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+        }
+        .logo {
+            height: 40px;
+        }
+        .navbar-shadow {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .social-icons li {
+            margin: 0 10px;
+        }
+        .social-icons a {
+            font-size: 24px;
+            color: #343a40;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
-<h1>Welcome to Admin Page</h1>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <img class="logo" src="/image/logo.png" alt="LOGO">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn" href="/profiles">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login" class="rounded-circle" width="30">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
+    <a class="navbar-brand mr-5" href="/">Appecomtech</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+        </ul>
+        <a class="nav-link" href="/utilisateurs/list">Gérer Utilisateurs</a>
+        <a class="nav-link" href="/produits/gererproduits">Gérer Produits</a>
+        <a class="nav-link" href="/admin/commande-admin">Gérer Commande</a>
+    </div>
+</nav>
+<div class="content">
+    <div class="container text-center my-5">
+        <h1 class="mb-4">Welcome to Admin Page</h1>
+        <a href="/utilisateurs/list" class="btn btn-primary btn-lg mx-2">Gérer Utilisateurs</a>
+        <a href="/produits/gererproduits" class="btn btn-secondary btn-lg mx-2">Gérer Produits</a>
+        <a href="/admin/commande-admin" class="btn btn-primary btn-lg mx-2">Gérer Commande</a>
+    </div>
+</div>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

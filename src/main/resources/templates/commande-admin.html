@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des commandes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des commandes</h1>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Numéro de commande</th>
+            <th>Utilisateur</th>
+            <th>Email</th>
+
+            <th>Total</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="commande : ${commandes}">
+            <td th:text="${commande.id}"></td>
+            <td th:text="${commande.utilisateur.nom}"></td>
+            <td th:text="${commande.utilisateur.email}"></td>
+            <td th:each="panier : ${commande.paniers}" th:text="${panier.produit.nom}"></td>
+            <td th:text="${commande.total}"></td>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
+</html>

@@ -170,3 +170,26 @@
     margin-left: -15px;
     margin-right: -15px;
 }
+
+
+/*style navbar*/
+
+.navbar .nav-item img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+
+}
+.navbar .nav-link {
+    display: flex;
+    align-items: center;
+
+}
+.navbar .nav-link img {
+    margin-right: 8px;
+}
+.logo {
+    width: 100px;
+    height: 50px;
+}
+

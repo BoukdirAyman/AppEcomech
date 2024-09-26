@@ -1,20 +1,12 @@
 package org.example.appecomtech.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.example.appecomtech.dao.entities.Produit;
 import org.example.appecomtech.dao.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,17 +65,4 @@ public class ProduitService {
     public void supprimerProduit(Long id) {
         produitRepository.deleteById(id);
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-

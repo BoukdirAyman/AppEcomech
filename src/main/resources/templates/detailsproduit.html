@@ -7,18 +7,57 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <a class="btn btn-outline-primary ml-2" href="/">
+            <img class="logo" src="/image/logo.png" alt="LOGO">
+        </a></a>
+
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarContact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contactez-nous
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarContact">
+                    <a class="dropdown-item" href="tel:0617597712">0617597712</a>
+                    <a class="dropdown-item" href="mailto:contact@example.com">aymanboukdirpro@gmail.com</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary ml-2" href="/Connexion">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login">
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 <div class="container">
     <h1>Détails du Produit</h1>
     <div class="card">
-        <img th:src="${produit.image}" alt="Image produit" class="card-img-top">
+        <img style="border-radius: 15px " th:src="${produit.image}" alt="Image produit" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title" th:text="${produit.nom}">Nom Produit</h5>
             <p class="card-text" th:text="${produit.description}">Description du produit.</p>
-            <p class="card-text"><strong th:text="${produit.prix}">Prix</strong> €</p>
+            <p class="card-text"><strong th:text="${produit.prix}">Prix</strong> $ </p>
             <p class="card-text">Stock: <span th:text="${produit.quantiteEnStock}">0</span></p>
-
+            <a href="/produits/gererproduits" class="btn btn-secondary">Retour à la liste</a>
         </div>
     </div>
 </div>
 </body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
 </html>

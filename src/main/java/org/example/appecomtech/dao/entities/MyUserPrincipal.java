@@ -1,6 +1,5 @@
 package org.example.appecomtech.dao.entities;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,20 +7,22 @@ import java.util.Collection;
 import java.util.List;
 
 public class MyUserPrincipal implements UserDetails {
-    private Utilisateur utilisateur;
-    private List<GrantedAuthority> authorities;
+    private final Utilisateur utilisateur;
+    private final List<GrantedAuthority> authorities;
+
     public MyUserPrincipal(Utilisateur utilisateur, List<GrantedAuthority> authorities) {
         this.utilisateur = utilisateur;
         this.authorities = authorities;
     }
+
     @Override
-    public Collection<GrantedAuthority> getAuthorities() {
-        return List.of();
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return utilisateur.getMotDePasse();
     }
 
     @Override
@@ -31,21 +32,33 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    public String getNom() {
+        return utilisateur.getNom();
+    }
+
+    public String getEmail() {
+        return utilisateur.getEmail();
+    }
+
+    public String getRole() {
+        return utilisateur.getRole();
     }
 }

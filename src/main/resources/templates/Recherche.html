@@ -7,44 +7,43 @@
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <!-- Votre barre de navigation -->
+</nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
-    <a class="navbar-brand mr-5" href="/">Appecomtech</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-
-            <li class="nav-item"><a class="nav-link" href="/produits/allproduits">Produits</a></li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="/recherche" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
-        </form>
-        <a class="btn btn-outline-primary ml-2" href="/Connexion">Connexion</a>
-        <a class="nav-link" href="produits/ajouter">Gerer produit</a>
-        <a class="nav-link" href="/panier">Panier</a>
-    </div>
+    <!-- Votre barre de navigation -->
 </nav>
 <div class="container">
     <h1 class="mt-5">Résultats de la recherche</h1>
-    <!-- Affichage des résultats de la recherche -->
-    <div class="mt-3">
-        <ul>
-            <li th:each="resultat : ${resultats}" th:text="${resultat}"></li>
-        </ul>
+    <!-- Affichage des résultats de la recherche sous forme de cartes -->
+    <div class="row mt-3">
+        <div class="col-md-4" th:each="resultat : ${resultats}">
+            <div class="card mb-4">
+                <img style="border-radius: 15px " th:src="@{${resultat.image}}" class="card-img-top" alt="Image produit">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${resultat.nom}">Nom du produit</h5>
+                    <p class="card-text" th:text="${resultat.description}">Description du produit</p>
+                    <p class="card-text" th:text="'$' + ${resultat.prix}">Prix du produit</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</body>
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
         <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
-        <ul class="social-icons">
-            <li><a href="#" class="fab fa-facebook"></a></li>
-            <li><a href="#" class="fab fa-twitter"></a></li>
-            <li><a href="#" class="fab fa-instagram"></a></li>
-        </ul>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

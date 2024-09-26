@@ -15,13 +15,13 @@ public class InscriptionController {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
-    @GetMapping("/inscription")
+    @GetMapping("/Inscription")
     public String afficherFormulaireInscription(Model model) {
         model.addAttribute("utilisateur", new Utilisateur());
         return "Inscription";
     }
 
-    @PostMapping("/inscription")
+    @PostMapping("/Inscription")
     public String traiterFormulaireInscription(@ModelAttribute Utilisateur utilisateur, Model model) {
         utilisateurRepository.save(utilisateur);
         return "redirect:/inscription-success";

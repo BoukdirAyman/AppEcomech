@@ -2,10 +2,7 @@ package org.example.appecomtech.dao.entities;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Setter
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor @AllArgsConstructor
 @Table(name = "Produit")
+@Data
 public class Produit {
 
     @Id
@@ -31,10 +29,13 @@ public class Produit {
 
     private String marque;
     @ManyToOne
-    private PanierItem panierItem;
+    private Panier panier;
 
     @Column(name = "image")
     private String image;
+
+
+
 
 
 

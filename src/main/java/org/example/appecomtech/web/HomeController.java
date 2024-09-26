@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+
     private final ProduitRepository produitRepository;
 
     public HomeController(ProduitRepository produitRepository) {
@@ -24,8 +25,6 @@ public class HomeController {
         model.addAttribute("produits", produits);
         return "Accueil";
     }
-
-
 
 
 }

@@ -1,13 +1,9 @@
 package org.example.appecomtech.dao.entities;
 
 import jakarta.persistence.*;
-
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,16 +11,25 @@ import java.util.Collection;
 
 
 @Entity
-public class PanierItem {
+@Table(name = "panier")
+public class Panier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "panierItem")
-    private Collection<Produit> produits;
+    @OneToOne
+    @JoinColumn(name = "utilisateur", referencedColumnName = "id")
+    private Utilisateur utilisateur;
 
     @ManyToOne
-    private Utilisateur utilisateur;
+    @JoinColumn(name = "produit_id", referencedColumnName = "id")
+    private Produit produit;
+
+    @ManyToOne
+    @JoinColumn(name = "commande_id")
+    private Commande commande;
+
+
 
     private int quantite;
 
@@ -34,12 +39,9 @@ public class PanierItem {
 
     private double prix;
 
-
-
-
-
-
-
+    public Panier(Produit produit) {
+        this.produit=produit;
+    }
 
     // Constructeurs, getters et setters
 

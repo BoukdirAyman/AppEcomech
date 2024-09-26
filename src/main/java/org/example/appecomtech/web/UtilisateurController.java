@@ -3,26 +3,26 @@ package org.example.appecomtech.web;
 import org.example.appecomtech.dao.entities.Utilisateur;
 import org.example.appecomtech.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.example.appecomtech.dao.entities.Utilisateur;
 
-@Controller
-@RequestMapping("/")
+
+
 public class UtilisateurController {
-    @Autowired
+
+
     private UtilisateurService utilisateurService;
 
-        @PostMapping("/login")
-        public String login(@RequestParam String username ,@RequestParam String password) {
-            boolean isAuthenticated = utilisateurService.checkLogin(username, password);
-            if (isAuthenticated) {
-                return "redirect:/";
-            } else {
-                return "redirect:/erreur";
-            }
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+        boolean isAuthenticated = utilisateurService.checkLogin(username, password);
+        if (isAuthenticated) {
+            return "redirect:/";
+        } else {
+            return "redirect:/erreur";
         }
-
+    }
 
     @GetMapping("/Connexion")
     public String showLoginForm() {
@@ -50,5 +50,6 @@ public class UtilisateurController {
     public Utilisateur getUserByNom(@PathVariable String nom) {
         return utilisateurService.findByNom(nom);
     }
-
 }
+
+

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirmation de Commande</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <a class="btn" href="/">
+            <img class="logo" src="/image/logo.png" alt="LOGO">
+        </a></a>
+
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarContact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contactez-nous
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarContact">
+                    <a class="dropdown-item" href="tel:0617597712">0617597712</a>
+                    <a class="dropdown-item" href="mailto:contact@example.com">aymanboukdirpro@gmail.com</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="btn " href="/profiles">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login">
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
+    <a class="navbar-brand mr-5" href="/">Appecomtech</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/Smartphones">Smartphones</a>
+                    <a class="dropdown-item" href="/Accessoires">Accessoires</a>
+                    <a class="dropdown-item" href="/Tablettes">Tablettes</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Marque</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                    <a class="dropdown-item" href="/Apple">Apple</a>
+                    <a class="dropdown-item" href="/Samsung">Samsung</a>
+                    <a class="dropdown-item" href="/Huawei">Huawei</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="produits/allproduits">Produits</a></li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/recherche" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+        </form>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+
+                </div>
+                <div th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+                </div>
+            </li>
+        </ul>
+
+        <a class="nav-link" href="/admin/admin"><i class="fas fa-user-cog"></i> Admin</a>
+        <a class="nav-link" href="/panier/viewpanier"><i class="fas fa-shopping-cart"></i> Panier</a>
+
+
+
+
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Confirmation de Commande</h1>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Merci pour votre commande !</h2>
+            <p class="card-text">Votre commande a été passée avec succès.</p>
+            <p class="card-text">Détails de la commande :</p>
+            <ul>
+                <li th:each="item : ${commande.paniers}">
+                    <span th:text="${item.produit.nom}">Nom Produit</span> -
+                    <span th:text="${item.quantite}">Quantité</span> x
+                    <span th:text="${item.produit.prix}">Prix</span> €
+                </li>
+            </ul>
+            <h3>Total: <span th:text="${commande.total}">0</span> €</h3>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+        <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
+    </div>
+</footer>
+</html>

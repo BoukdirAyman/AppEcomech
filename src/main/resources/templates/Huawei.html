@@ -8,58 +8,77 @@
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow nav1">
+    <a class="navbar-brand mr-5" href="/">
+        <a class="btn" href="/">
+            <img class="logo" src="/image/logo.png" alt="LOGO">
+        </a></a>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarContact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Contactez-nous
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarContact">
+                    <a class="dropdown-item" href="tel:0617597712">0617597712</a>
+                    <a class="dropdown-item" href="mailto:contact@example.com">aymanboukdirpro@gmail.com</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="btn " href="/profiles">
+                    <img src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" alt="Login">
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-shadow">
     <a class="navbar-brand mr-5" href="/">Appecomtech</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav2">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-
-            <li class="nav-item"><a class="nav-link" href="/produits/allproduits">Produits</a></li>
+            <li class="nav-item"><a class="nav-link" href="produits/allproduits">Produits</a></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/recherche" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher" name="query">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
-        </form>
-        <a class="btn btn-outline-primary ml-2" href="/Connexion">Connexion</a>
-        <a class="nav-link" href="produits/ajouter">Gerer produit</a>
-        <a class="nav-link" href="/panier">Panier</a>
+        <a class="nav-link" href="/panier/viewpanier">Panier</a>
     </div>
 </nav>
 <div class="container mt-5">
     <h1 class="text-center mb-4">Produits Huawei</h1>
     <div class="row">
-        <!-- Utilisation de Thymeleaf pour afficher les produits -->
-        <div th:each="produit : ${produits}" class="col-md-4 mb-4">
+        <div th:each="produit : ${produits}" class="col-md-4 mb-4" >
             <div class="card">
-                <img th:src="@{${produit.image}}" class="card-img-top" alt="Image produit">
+                <img style="border-radius: 15px " th:src="@{${produit.image}}" class="card-img-top" alt="Image produit">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${produit.nom}">Nom du produit</h5>
                     <p class="card-text" th:text="${produit.description}">Description du produit</p>
                     <p class="card-text" th:text="'$' + ${produit.prix}">Prix du produit</p>
-                    <a href="#" class="btn btn-primary">Acheter</a>
+                    <form th:action="@{/panier/ajouter}" method="post">
+                        <input type="hidden" name="produitId" th:value="${produit.id}">
+                        <button type="submit" class="btn btn-primary" data-id="[[${produit.id}]]" onclick="ajouterAuPanier(this)">Ajouter au panier</button>
+                    </form>
+                    <small class="text-muted">Stock: <span th:text="${produit.quantiteEnStock}">0</span></small>
                 </div>
             </div>
         </div>
-        <!-- Fin de l'utilisation de Thymeleaf -->
-    </div>
-</div>
-        <!-- Fin de l'exemple de produit Apple -->
-
-        <!-- Ajoutez d'autres produits Apple ici -->
     </div>
 </div>
 </body>
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
         <span class="text-muted">© 2024 Appecomtech. Tous droits réservés.</span>
-        <ul class="social-icons">
-            <li><a href="#" class="fab fa-facebook"></a></li>
-            <li><a href="#" class="fab fa-twitter"></a></li>
-            <li><a href="#" class="fab fa-instagram"></a></li>
-        </ul>
+        <div class="social-links">
+            <a href="https://www.instagram.com" target="_blank"><img src="/image/instagram.png" alt="Instagram" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/in/ayman-boukdir" target="_blank"><img src="/image/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px;"></a>
+            <a href="https://github.com/BoukdirAyman" target="_blank"><img src="/image/github.png" alt="Github" style="width: 30px; height: 30px;"></a>
+        </div>
+        <div class="made-by">
+            <span class="text-muted">Réalisé par Ayman Boukdir</span>
+        </div>
     </div>
 </footer>
 </html>

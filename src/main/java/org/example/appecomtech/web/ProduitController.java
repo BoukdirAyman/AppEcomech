@@ -1,4 +1,3 @@
-//// ProduitController.java
 package org.example.appecomtech.web;
 
 import org.example.appecomtech.dao.entities.Produit;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,8 +40,8 @@ public class ProduitController {
 
 
     @PostMapping("/ajouter")
-    public String ajouterPanier(@ModelAttribute("produit") Produit produit,
-                                 @RequestParam("imageFile") MultipartFile file) throws IOException {
+    public String ajouterProduits(@ModelAttribute("produit") Produit produit,
+                                @RequestParam("imageFile") MultipartFile file) throws IOException {
 
         if (!file.isEmpty()) {
             byte[] bytes = file.getBytes();
@@ -54,7 +54,7 @@ public class ProduitController {
 
         }
         produitService.save(produit);
-        return "redirect:/produits/panier";
+        return "redirect:/produits/gererproduits";
 
     }
 
@@ -63,7 +63,7 @@ public class ProduitController {
     public String afficherListeProduits(Model model) {
         List<Produit> listeProduits = produitService.findAll();
         model.addAttribute("listeProduits", listeProduits);
-        return "gererprojet";
+        return "gererproduit";
     }
 
     @GetMapping("/details/{id}")
@@ -92,13 +92,13 @@ public class ProduitController {
             logger.error("Une erreur s'est produite : {}", e.getMessage(), e);
             return "redirect:/erreur";
         }
-        return "redirect:/produits/allproduits";
+        return "redirect:/produits/gererproduits";
     }
 
     @GetMapping("/supprimer/{id}")
     public String supprimerProduit(@PathVariable("id") Long id) {
         produitService.supprimerProduit(id);
-        return "redirect:/produits/allproduits";
+        return "redirect:/produits/gererproduits";
     }
 
     @GetMapping("/allproduits")
@@ -115,14 +115,4 @@ public class ProduitController {
         return "liste_produits";
     }
 
-    }
-
-
-
-
-
-
-
-
-
-
+}
